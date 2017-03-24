@@ -1,0 +1,5 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence">
+    <persistence-unit name="userService">
+        <class>org.hill.jpa.entity.User</class>
+    </persistence-unit>
+</persistence>
