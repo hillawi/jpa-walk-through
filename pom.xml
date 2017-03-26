@@ -43,6 +43,7 @@
                         <releaseBranchPrefix>release-</releaseBranchPrefix>
                         <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
                     </flowInitContext>
+					<noDeploy>true</noDeploy>
                 </configuration>
             </plugin>
         </plugins>
