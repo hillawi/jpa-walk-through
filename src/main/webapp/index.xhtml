@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>JPA Walk-through</title>
+</head>
+<body>
+
+<p>Hello World</p>
+
+<div>
+    <h:dataTable value="#{userController.users}" var="user">
+        <h:column>#{user.firstName}</h:column>
+        <h:column>#{user.lastName}</h:column>
+    </h:dataTable>
+</div>
+
+</body>
+</html>
