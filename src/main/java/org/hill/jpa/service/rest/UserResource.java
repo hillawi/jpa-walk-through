@@ -6,7 +6,6 @@ import org.hill.jpa.service.UserService;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,8 +35,8 @@ public class UserResource {
     @POST
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addUser(User u) {
-        User user = userService.createUser(u);
-        return Response.status(200).entity(user).build();
+    @Produces(MediaType.APPLICATION_JSON)
+    public User addUser(User u) {
+        return userService.createUser(u);
     }
 }

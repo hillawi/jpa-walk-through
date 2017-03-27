@@ -31,4 +31,16 @@ public class EntityManagerTest {
         assertFalse(users.isEmpty());
         assertEquals(5, users.size());
     }
+
+    @Test
+    public void testCreation() {
+        User user = new User("John", "Doe", 33);
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.getTransaction().commit();
+        System.out.println(user);
+
+        assertNotNull(user);
+        assertEquals(user.getId(), 1);
+    }
 }
