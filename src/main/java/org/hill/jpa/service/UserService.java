@@ -1,5 +1,6 @@
 package org.hill.jpa.service;
 
+import org.hill.jpa.entity.PaginatedListWrapper;
 import org.hill.jpa.entity.User;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface UserService {
     User getUser(long userId);
 
     List<User> getUsers();
+
+    PaginatedListWrapper<User> getUsers(PaginatedListWrapper<User> listWrapper);
 }

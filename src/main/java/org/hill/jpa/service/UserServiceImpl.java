@@ -1,12 +1,14 @@
 package org.hill.jpa.service;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hill.jpa.entity.PaginatedListWrapper;
 import org.hill.jpa.entity.User;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ import java.util.List;
 
 @Stateless
 public class UserServiceImpl implements UserService {
-    @PersistenceContext(unitName = "inMemoryUserService")
+    @PersistenceContext(unitName = "managedUserService")
     private EntityManager entityManager;
 
     public UserServiceImpl() {
@@ -50,5 +52,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUsers() {
         return entityManager.createNamedQuery("User.findAll", User.class).getResultList();
+    }
+
+    @Override
+    public PaginatedListWrapper<User> getUsers(PaginatedListWrapper<User> listWrapper) {
+        listWrapper.setResultCount(countUsers());
+        int start = (listWrapper.getCurrentPage() - 1) * listWrapper.getPageSize();
+        listWrapper.setList(findUsers(start, listWrapper.getPageSize()));
+        return listWrapper;
+    }
+
+    private List<User> findUsers(int startPosition, int maxResult) {
+        Query query = entityManager.createQuery("SELECT u FROM User u ORDER BY u.id");
+        query.setFirstResult(startPosition);
+        query.setMaxResults(maxResult);
+        return query.getResultList();
+    }
+
+    private Integer countUsers() {
+        Query query = entityManager.createQuery("SELECT COUNT(u.id) FROM User u");
+        return ((Long) query.getSingleResult()).intValue();
     }
 }
