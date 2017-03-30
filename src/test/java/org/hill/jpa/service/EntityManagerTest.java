@@ -1,5 +1,6 @@
 package org.hill.jpa.service;
 
+import org.hamcrest.CoreMatchers;
 import org.hill.jpa.entity.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +42,6 @@ public class EntityManagerTest {
         System.out.println(user);
 
         assertNotNull(user);
-        assertEquals(user.getId(), 1);
+        assertThat(user.getId(), CoreMatchers.is(1L));
     }
 }
