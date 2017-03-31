@@ -38,7 +38,7 @@
                     <scmCommentPrefix>[jGitFlow]</scmCommentPrefix>
                     <flowInitContext>
                         <masterBranchName>master</masterBranchName>
-                        <developBranchName>development</developBranchName>
+                        <developBranchName>develop</developBranchName>
                         <featureBranchPrefix>feature-</featureBranchPrefix>
                         <releaseBranchPrefix>release-</releaseBranchPrefix>
                         <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
