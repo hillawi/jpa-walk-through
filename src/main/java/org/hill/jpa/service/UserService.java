@@ -11,9 +11,11 @@ import java.util.List;
 public interface UserService {
     User createUser(User user);
 
+    List<User> createUsers(List<User> users);
+
     User getUser(long userId);
 
-    List<User> getUsers();
+    List<User> getAllUsers();
 
     PaginatedListWrapper<User> getUsers(PaginatedListWrapper<User> listWrapper);
 }

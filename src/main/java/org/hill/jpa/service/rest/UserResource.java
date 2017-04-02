@@ -25,7 +25,7 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> listUsers() {
         System.out.println("Served at: " + LocalDateTime.now());
-        return userService.getUsers();
+        return userService.getAllUsers();
     }
 
     @POST
@@ -52,5 +52,13 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public User addUser(User u) {
         return userService.createUser(u);
+    }
+
+    @POST
+    @Path("/users/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<User> addUser(List<User> users) {
+        return userService.createUsers(users);
     }
 }

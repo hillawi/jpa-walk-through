@@ -5,7 +5,7 @@ import org.hill.jpa.entity.PaginatedListWrapper;
 import org.hill.jpa.entity.User;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Hillawi on 23-03-17.
  */
 
-@Stateless
+@RequestScoped
 public class UserServiceImpl implements UserService {
     @PersistenceContext(unitName = "managedUserService")
     private EntityManager entityManager;
@@ -39,8 +39,14 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
+    public List<User> createUsers(List<User> users) {
+        users.parallelStream().forEach(this::createUser);
+        return users;
+    }
+
     private void validate(User user) {
-        if (user == null || StringUtils.isEmpty(user.getFirstName()) || StringUtils.isEmpty(user.getLastName()) || user.getAge() <= 0) {
+        if (user == null || StringUtils.isEmpty(user.getFirstName()) || StringUtils.isEmpty(user.getLastName()) || StringUtils.isEmpty(user.getNickName())) {
             throw new IllegalArgumentException("The user's first and last names are mandatory. The user age should be a positive integer.");
         }
     }
@@ -50,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsers() {
+    public List<User> getAllUsers() {
         return entityManager.createNamedQuery("User.findAll", User.class).getResultList();
     }
 
@@ -63,7 +69,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private List<User> findUsers(int startPosition, int maxResult) {
-        Query query = entityManager.createQuery("SELECT u FROM User u ORDER BY u.id");
+        Query query = entityManager.createNamedQuery("User.findAll", User.class);
         query.setFirstResult(startPosition);
         query.setMaxResults(maxResult);
         return query.getResultList();

@@ -2,6 +2,7 @@ package org.hill.jpa.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * Created by Hillawi on 23-03-17.
@@ -17,19 +18,25 @@ public class User implements Serializable {
     @GeneratedValue(generator = "USER_GEN")
     @Id
     private long id;
-    @Column(name = "FNAME", length = 50)
+    @Column(name = "F_NAME", length = 50)
     private String firstName;
-    @Column(name = "LNAME", length = 50)
+    @Column(name = "L_NAME", length = 50)
     private String lastName;
-    private int age;
+    @Column(name = "N_NAME")
+    private String nickName;
+    @Column(name = "B_DATE")
+    private LocalDate birthDate;
+    private Gender gender;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, int age) {
+    public User(String firstName, String lastName, String nickName, LocalDate birthDate, Gender gender) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.nickName = nickName;
+        this.birthDate = birthDate;
+        this.gender = gender;
     }
 
     public long getId() {
@@ -56,11 +63,27 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }

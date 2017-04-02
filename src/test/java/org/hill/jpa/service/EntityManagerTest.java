@@ -1,6 +1,7 @@
 package org.hill.jpa.service;
 
 import org.hamcrest.CoreMatchers;
+import org.hill.jpa.entity.Gender;
 import org.hill.jpa.entity.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -35,7 +37,7 @@ public class EntityManagerTest {
 
     @Test
     public void testCreation() {
-        User user = new User("John", "Doe", 33);
+        User user = new User("John", "Doe", "JohnDoe", LocalDate.of(2017, 1, 1), Gender.MALE);
         entityManager.getTransaction().begin();
         entityManager.persist(user);
         entityManager.getTransaction().commit();
