@@ -4,6 +4,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.DateTimeConverter;
 import javax.faces.convert.FacesConverter;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  * Created by ahmed.abdeen on 04-04-17.
@@ -16,6 +18,7 @@ public class LocalDateFacesConverter extends DateTimeConverter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        return super.getAsObject(context, component, value);
+        Date date = (Date) super.getAsObject(context, component, value);
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }

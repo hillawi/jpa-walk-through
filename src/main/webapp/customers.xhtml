@@ -21,7 +21,8 @@
                 <p:inputText id="nickName" value="#{customerBean.customer.nickName}"/>
 
                 <h:outputText value="Birth date: "/>
-                <p:calendar id="birthDate" value="#{customerBean.customer.birthDate}" converter="localDateConverter"/>
+                <p:calendar id="birthDate" value="#{customerBean.customer.birthDate}" converter="localDateConverter"
+                            mode="popup" showOn="button" popupIconOnly="true" pattern="dd/MM/yyyy"/>
                 <p:commandButton id="saveBtn" value="Save" actionListener="#{customerBean.saveCustomer}"/>
                 <p:commandButton type="reset" id="resetBtn" value="Reset"/>
             </p:panelGrid>
