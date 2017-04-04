@@ -20,6 +20,10 @@ public class UserBean implements Serializable {
         user = new User();
     }
 
+    public void saveUser() {
+        System.out.println(user + " saved.");
+    }
+
     public User getUser() {
         return user;
     }
