@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Hillawi on 23-03-17.
@@ -34,5 +35,9 @@ public class CustomerBean implements Serializable {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<Customer> getCustomers() {
+        return customerService.getAll();
     }
 }
