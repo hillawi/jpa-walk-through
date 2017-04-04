@@ -10,9 +10,10 @@
 
     <div>
         <h:form>
+            <p:messages/>
             <p:panelGrid id="signUpPanel" columns="2" cellpadding="3">
                 <h:outputText value="First name: "/>
-                <p:inputText id="firstName" value="#{customerBean.customer.firstName}"/>
+                <p:inputText id="firstName" value="#{customerBean.customer.firstName}" required="true"/>
 
                 <h:outputText value="Last name: "/>
                 <p:inputText id="lastName" value="#{customerBean.customer.lastName}"/>

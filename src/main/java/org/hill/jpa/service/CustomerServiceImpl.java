@@ -5,7 +5,7 @@ import org.hill.jpa.entity.Customer;
 import org.hill.jpa.entity.PaginatedListWrapper;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Hillawi on 23-03-17.
  */
 
-@RequestScoped
+@Stateless
 public class CustomerServiceImpl implements CustomerService {
     @PersistenceContext(unitName = "managedCustomerService")
     private EntityManager entityManager;
@@ -47,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private void validate(Customer customer) {
         if (customer == null || StringUtils.isEmpty(customer.getFirstName()) || StringUtils.isEmpty(customer.getLastName()) || StringUtils.isEmpty(customer.getNickName())) {
-            throw new IllegalArgumentException("The customer's first and last names are mandatory. The customer age should be a positive integer.");
+            throw new IllegalArgumentException("The customer's first name, last name and nickname are mandatory.");
         }
     }
 

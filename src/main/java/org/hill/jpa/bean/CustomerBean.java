@@ -1,10 +1,12 @@
 package org.hill.jpa.bean;
 
 import org.hill.jpa.entity.Customer;
+import org.hill.jpa.service.CustomerService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
 import java.io.Serializable;
 
 /**
@@ -13,6 +15,8 @@ import java.io.Serializable;
 @ManagedBean
 @SessionScoped
 public class CustomerBean implements Serializable {
+    @Inject
+    private CustomerService customerService;
     private Customer customer;
 
     @PostConstruct
@@ -21,7 +25,7 @@ public class CustomerBean implements Serializable {
     }
 
     public void saveCustomer() {
-        System.out.println(customer + " saved.");
+        customerService.create(customer);
     }
 
     public Customer getCustomer() {
