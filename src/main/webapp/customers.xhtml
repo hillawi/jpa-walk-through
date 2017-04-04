@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
 <h:head>
     <meta charset="UTF-8"/>
     <title>JPA Walk-through</title>
@@ -21,9 +21,7 @@
                 <p:inputText id="nickName" value="#{customerBean.customer.nickName}"/>
 
                 <h:outputText value="Birth date: "/>
-                <p:calendar id="birthDate" value="#{customerBean.customer.birthDate}">
-                    <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
-                </p:calendar>
+                <p:calendar id="birthDate" value="#{customerBean.customer.birthDate}" converter="localDateConverter"/>
                 <p:commandButton id="saveBtn" value="Save" actionListener="#{customerBean.saveCustomer}"/>
                 <p:commandButton type="reset" id="resetBtn" value="Reset"/>
             </p:panelGrid>
