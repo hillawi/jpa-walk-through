@@ -10,14 +10,14 @@ import java.time.LocalDate;
  * Created by Hillawi on 23-03-17.
  */
 @Entity
-@EntityListeners({UserPersistenceListener.class})
-@Table(name = "USERS")
-@NamedQueries({@NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")})
-public class User implements Serializable {
+@EntityListeners({CustomerPersistenceListener.class})
+@Table(name = "CUSTOMER")
+@NamedQueries({@NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c")})
+public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @TableGenerator(name = "USER_GEN", table = "ID_GEN", pkColumnName = "ID", valueColumnName = "VAL")
-    @GeneratedValue(generator = "USER_GEN")
+    @TableGenerator(name = "CUSTOMER_GEN", table = "ID_GEN", pkColumnName = "ID", valueColumnName = "VAL")
+    @GeneratedValue(generator = "CUSTOMER_GEN")
     @Id
     private long id;
     @Column(name = "F_NAME", length = 50)
@@ -30,10 +30,10 @@ public class User implements Serializable {
     private LocalDate birthDate;
     private Gender gender;
 
-    public User() {
+    public Customer() {
     }
 
-    public User(String firstName, String lastName, String nickName, LocalDate birthDate, Gender gender) {
+    public Customer(String firstName, String lastName, String nickName, LocalDate birthDate, Gender gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;

@@ -12,19 +12,19 @@
         <h:form>
             <p:panelGrid id="signUpPanel" columns="2" cellpadding="3">
                 <h:outputText value="First name: "/>
-                <p:inputText id="firstName" value="#{userBean.user.firstName}"/>
+                <p:inputText id="firstName" value="#{customerBean.customer.firstName}"/>
 
                 <h:outputText value="Last name: "/>
-                <p:inputText id="lastName" value="#{userBean.user.lastName}"/>
+                <p:inputText id="lastName" value="#{customerBean.customer.lastName}"/>
 
                 <h:outputText value="Nickname: "/>
-                <p:inputText id="nickName" value="#{userBean.user.nickName}"/>
+                <p:inputText id="nickName" value="#{customerBean.customer.nickName}"/>
 
                 <h:outputText value="Birth date: "/>
-                <p:calendar id="birthDate" value="#{userBean.user.birthDate}">
+                <p:calendar id="birthDate" value="#{customerBean.customer.birthDate}">
                     <f:convertDateTime pattern="dd/MM/yyyy" type="date" />
                 </p:calendar>
-                <p:commandButton id="saveBtn" value="Save" actionListener="#{userBean.saveUser}"/>
+                <p:commandButton id="saveBtn" value="Save" actionListener="#{customerBean.saveCustomer}"/>
                 <p:commandButton type="reset" id="resetBtn" value="Reset"/>
             </p:panelGrid>
             <p:blockUI block="signUpPanel" trigger="saveBtn"/>

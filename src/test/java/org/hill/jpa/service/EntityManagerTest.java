@@ -1,10 +1,8 @@
 package org.hill.jpa.service;
 
 import org.hamcrest.CoreMatchers;
+import org.hill.jpa.entity.Customer;
 import org.hill.jpa.entity.Gender;
-import org.hill.jpa.entity.User;
-import org.junit.Before;
-import org.junit.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,7 +20,7 @@ public class EntityManagerTest {
 
     //@Before
     public void init() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("userServiceTest");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("customerServiceTest");
         entityManager = emf.createEntityManager();
     }
 
@@ -30,20 +28,20 @@ public class EntityManagerTest {
     public void testEntityManagerLookup() throws Exception {
         assertNotNull(entityManager);
 
-        List<User> users = entityManager.createNamedQuery("User.findAll", User.class).getResultList();
-        assertFalse(users.isEmpty());
-        assertEquals(5, users.size());
+        List<Customer> customers = entityManager.createNamedQuery("Customer.findAll", Customer.class).getResultList();
+        assertFalse(customers.isEmpty());
+        assertEquals(5, customers.size());
     }
 
     //@Test
     public void testCreation() {
-        User user = new User("John", "Doe", "JohnDoe", LocalDate.of(2017, 1, 1), Gender.MALE);
+        Customer customer = new Customer("John", "Doe", "JohnDoe", LocalDate.of(2017, 1, 1), Gender.MALE);
         entityManager.getTransaction().begin();
-        entityManager.persist(user);
+        entityManager.persist(customer);
         entityManager.getTransaction().commit();
-        System.out.println(user);
+        System.out.println(customer);
 
-        assertNotNull(user);
-        assertThat(user.getId(), CoreMatchers.is(1L));
+        assertNotNull(customer);
+        assertThat(customer.getId(), CoreMatchers.is(1L));
     }
 }

@@ -32,8 +32,8 @@
         <security-realms>
             <security-realm name="ManagementRealm">
                 <authentication>
-                    <local default-user="$local" skip-group-loading="true"/>
-                    <properties path="mgmt-users.properties" relative-to="jboss.server.config.dir"/>
+                    <local default-customer="$local" skip-group-loading="true"/>
+                    <properties path="mgmt-customers.properties" relative-to="jboss.server.config.dir"/>
                 </authentication>
                 <authorization map-groups-to-roles="false">
                     <properties path="mgmt-groups.properties" relative-to="jboss.server.config.dir"/>
@@ -41,8 +41,8 @@
             </security-realm>
             <security-realm name="ApplicationRealm">
                 <authentication>
-                    <local default-user="$local" allowed-users="*" skip-group-loading="true"/>
-                    <properties path="application-users.properties" relative-to="jboss.server.config.dir"/>
+                    <local default-customer="$local" allowed-customers="*" skip-group-loading="true"/>
+                    <properties path="application-customers.properties" relative-to="jboss.server.config.dir"/>
                 </authentication>
                 <authorization>
                     <properties path="application-roles.properties" relative-to="jboss.server.config.dir"/>
@@ -72,7 +72,7 @@
             <role-mapping>
                 <role name="SuperUser">
                     <include>
-                        <user name="$local"/>
+                        <customer name="$local"/>
                     </include>
                 </role>
             </role-mapping>
@@ -136,7 +136,7 @@
                     <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url>
                     <driver>h2</driver>
                     <security>
-                        <user-name>sa</user-name>
+                        <customer-name>sa</customer-name>
                         <password>sa</password>
                     </security>
                 </datasource>

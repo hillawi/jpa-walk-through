@@ -1,8 +1,8 @@
 package org.hill.jpa.service.rest;
 
+import org.hill.jpa.entity.Customer;
 import org.hill.jpa.entity.PaginatedListWrapper;
-import org.hill.jpa.entity.User;
-import org.hill.jpa.service.UserService;
+import org.hill.jpa.service.CustomerService;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -15,50 +15,50 @@ import java.util.List;
  * Created by Hillawi on 25-03-17.
  */
 @Stateless
-@Path("users")
-public class UserResource {
+@Path("customers")
+public class CustomerResource {
     @Inject
-    UserService userService;
+    CustomerService customerService;
 
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> listUsers() {
+    public List<Customer> list() {
         System.out.println("Served at: " + LocalDateTime.now());
-        return userService.getAllUsers();
+        return customerService.getAll();
     }
 
     @POST
     @Path("/pagination")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public PaginatedListWrapper<User> listUsers(@DefaultValue("1") Integer page) {
-        PaginatedListWrapper<User> listWrapper = new PaginatedListWrapper<>();
+    public PaginatedListWrapper<Customer> list(@DefaultValue("1") Integer page) {
+        PaginatedListWrapper<Customer> listWrapper = new PaginatedListWrapper<>();
         listWrapper.setCurrentPage(page);
         listWrapper.setPageSize(10);
-        return userService.getUsers(listWrapper);
+        return customerService.get(listWrapper);
     }
 
     @GET
-    @Path("/user/find/{userId}")
+    @Path("/customer/find/{customerId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@PathParam("userId") long id) {
-        return userService.getUser(id);
+    public Customer get(@PathParam("customerId") long id) {
+        return customerService.get(id);
     }
 
     @POST
-    @Path("/user/add")
+    @Path("/customer/add")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User addUser(User u) {
-        return userService.createUser(u);
+    public Customer add(Customer u) {
+        return customerService.create(u);
     }
 
     @POST
-    @Path("/users/add")
+    @Path("/customers/add")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> addUser(List<User> users) {
-        return userService.createUsers(users);
+    public List<Customer> addAll(List<Customer> customers) {
+        return customerService.create(customers);
     }
 }
