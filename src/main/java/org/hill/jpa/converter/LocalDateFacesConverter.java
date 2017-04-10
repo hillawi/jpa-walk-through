@@ -13,7 +13,7 @@ import java.util.Date;
 @FacesConverter("localDateConverter")
 public class LocalDateFacesConverter extends DateTimeConverter {
     public LocalDateFacesConverter() {
-        setPattern("dd/MM/yyyy");
+        setPattern("yyyy/MM/dd");
     }
 
     @Override
