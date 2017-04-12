@@ -7,7 +7,7 @@ import org.primefaces.event.RowEditEvent;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.Serializable;
@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Hillawi on 23-03-17.
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class CustomerBean implements Serializable {
     @Inject
     private CustomerService customerService;

@@ -11,7 +11,7 @@
 <h:body>
     <div>
         <o:importConstants type="org.hill.jpa.model.OrderStatus"/>
-        <h:form id="productsListForm">
+        <h:form id="ordersListForm">
             <p:growl id="msgs" showDetail="true"/>
             <p:dataTable var="order" value="#{cartBean.products.keySet}" editable="true">
                 <f:facet name="header">
@@ -30,7 +30,7 @@
                 </p:column>
 
                 <f:facet name="footer">
-                    There are #{cartBean.products.size()} product(s) in total.
+                    There are #{cartBean.orders.size()} product(s) in total.
                 </f:facet>
             </p:dataTable>
         </h:form>

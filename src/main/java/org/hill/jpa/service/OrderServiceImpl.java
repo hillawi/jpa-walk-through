@@ -3,6 +3,7 @@ package org.hill.jpa.service;
 import org.hill.jpa.model.PaginatedListWrapper;
 import org.hill.jpa.model.entity.Order;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.util.List;
 /**
  * Created by Hillawi on 12-04-17.
  */
+@Stateless
 public class OrderServiceImpl implements OrderService {
     @PersistenceContext(name = "managedService")
     EntityManager entityManager;

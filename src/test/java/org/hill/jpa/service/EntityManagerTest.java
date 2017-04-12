@@ -1,8 +1,8 @@
 package org.hill.jpa.service;
 
 import org.hamcrest.CoreMatchers;
-import org.hill.jpa.entity.Customer;
-import org.hill.jpa.entity.Gender;
+import org.hill.jpa.model.Gender;
+import org.hill.jpa.model.entity.Customer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

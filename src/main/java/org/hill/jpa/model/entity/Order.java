@@ -11,7 +11,7 @@ import java.util.Collection;
  * Created by Hillawi on 11-04-17.
  */
 @Entity
-@Table(name = "ORDER")
+@Table(name = "CART_ORDER")
 @NamedQueries({
         @NamedQuery(name = "Order.findAll", query = "SELECT o FROM Order o"),
         @NamedQuery(name = "Order.findAllByCustomer", query = "SELECT o FROM Order o, Customer c WHERE o.customer.id = c.id")

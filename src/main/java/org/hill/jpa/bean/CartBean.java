@@ -23,23 +23,24 @@ public class CartBean {
     @Inject
     private OrderService orderService;
     private Map<Product, Integer> products;
-    private Order order;
     private LocalDateTime creationDate;
+    private Order order;
+    private Product product;
 
     @PostConstruct
     public void init() {
         products = new HashMap<>();
         order = new Order();
+        product = new Product();
         creationDate = LocalDateTime.now();
     }
 
-    public void addProduct(Product product) {
+    public void addProduct() {
         int count = 1;
         if (products.containsKey(product)) {
             count += products.get(product);
         }
         products.put(product, count);
-
     }
 
     public void submitCart() {
@@ -62,5 +63,13 @@ public class CartBean {
 
     public List<Order> getOrders() {
         return orderService.getAllByCustomer();
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }
