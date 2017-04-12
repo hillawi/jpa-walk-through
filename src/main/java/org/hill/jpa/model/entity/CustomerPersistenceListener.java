@@ -1,4 +1,4 @@
-package org.hill.jpa.entity;
+package org.hill.jpa.model.entity;
 
 import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;

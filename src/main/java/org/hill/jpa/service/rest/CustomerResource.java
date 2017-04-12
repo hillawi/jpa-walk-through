@@ -1,7 +1,7 @@
 package org.hill.jpa.service.rest;
 
-import org.hill.jpa.entity.Customer;
-import org.hill.jpa.entity.PaginatedListWrapper;
+import org.hill.jpa.model.PaginatedListWrapper;
+import org.hill.jpa.model.entity.Customer;
 import org.hill.jpa.service.CustomerService;
 
 import javax.ejb.Stateless;

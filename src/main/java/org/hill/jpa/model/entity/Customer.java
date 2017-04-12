@@ -1,10 +1,12 @@
-package org.hill.jpa.entity;
+package org.hill.jpa.model.entity;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hill.jpa.model.Gender;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * Created by Hillawi on 23-03-17.
@@ -16,8 +18,9 @@ import java.time.LocalDate;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @TableGenerator(name = "CUSTOMER_GEN", table = "ID_GEN", pkColumnName = "ID", valueColumnName = "VAL")
+    @TableGenerator(name = "CUSTOMER_GEN", table = "CUSTOMER_ID_GEN", pkColumnName = "ID", valueColumnName = "VAL")
     @GeneratedValue(generator = "CUSTOMER_GEN")
+    @Column(name = "CUSTOMER_ID")
     @Id
     private long id;
     @Column(name = "F_NAME", length = 50)
@@ -29,6 +32,8 @@ public class Customer implements Serializable {
     @Column(name = "B_DATE")
     private LocalDate birthDate;
     private Gender gender;
+    @OneToMany(mappedBy = "customer")
+    private Set<Order> orders;
 
     public Customer() {
     }
@@ -87,6 +92,14 @@ public class Customer implements Serializable {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

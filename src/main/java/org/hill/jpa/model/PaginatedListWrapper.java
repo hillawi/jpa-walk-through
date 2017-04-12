@@ -1,4 +1,4 @@
-package org.hill.jpa.entity;
+package org.hill.jpa.model;
 
 import java.util.Collections;
 import java.util.List;

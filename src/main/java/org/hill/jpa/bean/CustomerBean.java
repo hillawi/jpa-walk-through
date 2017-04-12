@@ -1,6 +1,6 @@
 package org.hill.jpa.bean;
 
-import org.hill.jpa.entity.Customer;
+import org.hill.jpa.model.entity.Customer;
 import org.hill.jpa.service.CustomerService;
 import org.primefaces.event.RowEditEvent;
 
@@ -33,13 +33,12 @@ public class CustomerBean implements Serializable {
     }
 
     public void onEdit(RowEditEvent event) {
-        System.out.println(event);
-        FacesMessage msg = new FacesMessage("Customer Edited", ((Customer) event.getObject()).getNickName());
+        this.customer = customerService.update((Customer) event.getObject());
+        FacesMessage msg = new FacesMessage("Customer Edited", this.customer.getNickName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void onEditCancel(RowEditEvent event) {
-        System.out.println(event);
         FacesMessage msg = new FacesMessage("Edit cancelled", ((Customer) event.getObject()).getNickName());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }

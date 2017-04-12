@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>JPA Walk-through - products list</title>
+</h:head>
+<h:body>
+    <div>
+        <o:importConstants type="org.hill.jpa.model.OrderStatus"/>
+        <h:form id="productsListForm">
+            <p:growl id="msgs" showDetail="true"/>
+            <p:dataTable var="order" value="#{cartBean.products.keySet}" editable="true">
+                <f:facet name="header">
+                    List of orders
+                </f:facet>
+
+                <p:column headerText="Id">
+                    <h:outputText value="#{order.id}"/>
+                </p:column>
+                <p:column headerText="Category">
+                    <h:outputText value="#{order.productCategory}"/>
+                </p:column>
+
+                <p:column style="width:32px">
+                    <p:rowEditor/>
+                </p:column>
+
+                <f:facet name="footer">
+                    There are #{cartBean.products.size()} product(s) in total.
+                </f:facet>
+            </p:dataTable>
+        </h:form>
+    </div>
+</h:body>
+</html>

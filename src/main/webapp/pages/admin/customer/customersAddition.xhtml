@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
 <h:head>
     <meta charset="UTF-8"/>
     <title>JPA Walk-through - New customer</title>
 </h:head>
 <h:body>
-
     <div>
+        <o:importConstants type="org.hill.jpa.entity.Gender"/>
         <h:form>
             <p:messages/>
             <p:panelGrid id="signUpPanel" columns="2" cellpadding="3">
@@ -24,6 +26,14 @@
                 <h:outputText value="Birth date: "/>
                 <p:calendar id="birthDate" value="#{customerBean.customer.birthDate}" converter="localDateConverter"
                             mode="popup" showOn="button" popupIconOnly="true" pattern="yyyy/MM/dd"/>
+
+                <h:outputText value="Gender: "/>
+                <p:selectOneMenu value="#{customerBean.customer.gender}">
+                    <f:selectItem itemLabel="" itemValue=""/>
+                    <f:selectItem itemLabel="Male" itemValue="#{Gender.MALE}"/>
+                    <f:selectItem itemLabel="Female" itemValue="#{Gender.FEMALE}"/>
+                </p:selectOneMenu>
+
                 <p:commandButton id="saveBtn" value="Save" actionListener="#{customerBean.saveCustomer}"/>
                 <p:commandButton type="reset" id="resetBtn" value="Reset"/>
             </p:panelGrid>

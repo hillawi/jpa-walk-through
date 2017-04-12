@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:o="http://omnifaces.org/ui">
+<h:head>
+    <meta charset="UTF-8"/>
+    <title>JPA Walk-through - New product</title>
+</h:head>
+<h:body>
+    <div>
+        <o:importConstants type="org.hill.jpa.model.ProductCategory"/>
+        <h:form>
+            <p:messages/>
+            <p:panelGrid id="productPanel" columns="2" cellpadding="3">
+                <h:outputText value="Category: "/>
+                <p:selectOneMenu value="#{productBean.product.productCategory}">
+                    <f:selectItem itemLabel="" itemValue=""/>
+                    <f:selectItem itemLabel="Phone" itemValue="#{ProductCategory.PHONE}"/>
+                    <f:selectItem itemLabel="CD" itemValue="#{ProductCategory.CD}"/>
+                    <f:selectItem itemLabel="Storage" itemValue="#{ProductCategory.STORAGE}"/>
+                    <f:selectItem itemLabel="CPU" itemValue="#{ProductCategory.CPU}"/>
+                    <f:selectItem itemLabel="Book" itemValue="#{ProductCategory.BOOK}"/>
+                </p:selectOneMenu>
+
+                <h:outputText value="Description: "/>
+                <p:inputText id="description" value="#{productBean.product.description}"/>
+
+                <p:commandButton id="saveBtn" value="Save" actionListener="#{productBean.saveProduct}"/>
+                <p:commandButton type="reset" id="resetBtn" value="Reset"/>
+            </p:panelGrid>
+            <p:blockUI block="productPanel" trigger="saveBtn"/>
+        </h:form>
+    </div>
+</h:body>
+</html>
