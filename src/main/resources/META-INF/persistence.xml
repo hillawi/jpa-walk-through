@@ -2,15 +2,28 @@
              xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
     <persistence-unit name="managedService" transaction-type="JTA">
-        <non-jta-data-source>java:jboss/datasources/JpaDS</non-jta-data-source>
+        <jta-data-source>java:comp/env/jdbc/local_pg</jta-data-source>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="javax.persistence.schema-generation.create-source" value="metadata"/>
             <property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
 
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernateformat_sql" value="true"/>
+            <property name="javax.persistence.validation.mode" value="none"/>
+            <property name="javax.persistence.query.timeout" value="60"/>
+
+            <property name="eclipselink.cache.shared.default" value="false"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+            <property name="eclipselink.logging.level.sql" value="FINE"/>
+            <property name="eclipselink.logging.exceptions" value="true"/>
+            <property name="eclipselink.logging.parameters" value="true"/>
+            <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
+            <property name="eclipselink.jdbc.batch-writing.size" value="1000"/>
+            <!-- DO NOT REMOVE: required for many-to-one relations / lazy-loading -->
+            <property name="eclipselink.weaving" value="static"/>
+            <property name="eclipselink.weaving.changetracking" value="false"/>
+            <property name="eclipselink.session.customizer" value="be.fgov.economie.common.domain.eclipselink.FodSessionCustomizer"/>
+            <!--<property name="eclipselink.session.customizer" value="be.fgov.economie.datcmn.workaround.FodSessionCustomizer"/>-->
+            <property name="eclipselink.id-validation" value="NULL"/>
         </properties>
     </persistence-unit>
 </persistence>
-
